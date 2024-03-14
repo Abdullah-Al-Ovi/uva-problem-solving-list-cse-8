@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const SubmissionList = () => {
     const [userId, setUserID] = useState('')
@@ -8,13 +9,22 @@ const SubmissionList = () => {
         e.preventDefault()
         const userName = e.target?.userName?.value
         try {
-            const response = await axios.get(`https://uhunt.onlinejudge.org/api/uname2uid/${userName}`);
+            const response = await axios.get(`https://uhunt.onlinejudge.org//api/uname2uid/${userName}`);
             // console.log(response.data);
             setUserID(response.data)
+            if(!response.data){
+                document.getElementById('my_modal_5').close();
+                e.target.reset()
+                return toast.error('No user id is found')
+            }
             e.target.reset()
+           
             
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            e.target.reset()
+            document.getElementById('my_modal_5').close();
+            toast.error(error.message)
         }
 
     }
@@ -65,7 +75,7 @@ const SubmissionList = () => {
                         </form>
                     </div>
                     {
-                        userId && <p className="font-semibold text-blue-700">Your user id is: {userId} </p>
+                        userId ? <p className="font-semibold text-blue-700">Your user id is: {userId} </p> : ''
                     }
                 </div>
             </dialog>

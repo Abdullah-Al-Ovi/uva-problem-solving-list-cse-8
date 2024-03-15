@@ -6,11 +6,10 @@ const Rank = ({ submissionCounts }) => {
         console.error("submissionCounts is either undefined or not an array:", submissionCounts);
         return <div>Error: Unable to fetch submission counts</div>;
     }
-
     return (
         <div className="text-xs md:text-base">
             <div className="flex justify-center items-center">
-                <h2 className="text-lg md:text-2xl font-bold my-4 text-center">Rank of CSE-8 Intra Batch Contest</h2>
+                <h2 className="text-lg md:text-2xl md:font-bold my-7 md:my-4 md:text-center text-left">CSE-8 Intra Batch Contest <sup className="text-base md:font-medium">Powered by Md. Erfan</sup></h2>
                 <div className="tooltip tooltip-left md:tooltip-bottom ml-2" data-tip="The ranking is determined based on the number of successful submissions. If two or more users have the same number of successful submissions, the rank is then determined by comparing their lower unsuccessful submission counts.">
                     <i className="fa-solid fa-circle-info"></i>
                 </div>
@@ -31,10 +30,10 @@ const Rank = ({ submissionCounts }) => {
                 <tbody>
                     {submissionCounts?.map(({ userId, roll, name, totalSubmissions, successfulSubmissions, unsuccessfulSubmissions }, index) => (
                         <tr key={userId} className="border-b text-center">
-                            <td className="border border-gray-400 px-4 py-2">{index + 1}</td>
-                            <td className="border border-gray-400 px-4 py-2">{roll}</td>
-                            <td className="border border-gray-400 px-4 py-2">{userId}</td>
-                            <td className="border border-gray-400 px-4 py-2">{name}</td>
+                           <td className={`border border-gray-600 px-4 py-2 ${index === 0 || index === 1 || index === 2 ? 'text-orange-600 font-bold' : index === 3 || index === 4 || index === 5 || index === 6  ? 'text-indigo-500 font-semibold' : ''}`}>{index + 1}<span className="text-xs">{index === 0 || index === 1 || index === 2 ? '👑' : index === 3 || index === 4 || index === 5 || index === 6  ? '⭐' : ''}</span></td>
+                            <td className={`border border-gray-600 px-4 py-2 ${index === 0 || index === 1 || index === 2 ? 'text-orange-600 font-bold' : index === 3 || index === 4 || index === 5 || index === 6 ? 'text-indigo-500 font-semibold' : ''}`}>{roll}</td>
+                            <td className={`border border-gray-600 px-4 py-2 ${index === 0 || index === 1 || index === 2 ? 'text-orange-600 font-bold' : index === 3 || index === 4 || index === 5 || index === 6  ? 'text-indigo-500 font-semibold' : ''}`}>{userId}</td>
+                            <td className={`border border-gray-600 px-4 py-2 ${index === 0 || index === 1 || index === 2 ? 'text-orange-600 font-bold' : index === 3 || index === 4 || index === 5 || index === 6  ? 'text-indigo-500 font-semibold' : ''}`}>{name}</td>
                             <td className="border border-gray-400 px-4 py-2">{totalSubmissions}</td>
                             <td className="border border-gray-400 px-4 py-2">{successfulSubmissions}</td>
                             <td className="border border-gray-400 px-4 py-2">{unsuccessfulSubmissions}</td>

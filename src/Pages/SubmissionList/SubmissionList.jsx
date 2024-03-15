@@ -177,9 +177,9 @@ const SubmissionList = () => {
                                         <td className="border border-gray-400 px-4 py-2">{submission[1]}</td>
                                         <td className="border border-gray-400 px-4 py-2">{submission[2]}</td>
                                         <td className="border border-gray-400 px-4 py-2">{submission[3]}</td>
-                                        <td>{formatDate(submission[4])}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{formatDate(submission[4])}</td>
                                         <td className="border border-gray-400 px-4 py-2">{languageNames[submission[5]]}</td>
-                                        <td className="p-2">{submission[6]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{submission[6]}</td>
                                     </tr>
                                 ))}
                             </tbody>

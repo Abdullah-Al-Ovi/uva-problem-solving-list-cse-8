@@ -14,7 +14,6 @@ const Banner = () => {
                             <span className="sm:block"> UVA contest and submission list</span>
                         </h1>
                         <p className="mx-auto mt-4 max-w-xl md:text-xl text-gray-300">
-
                             <ul className="space-y-4 text-left">
                                 <li className="flex items-center space-x-3 rtl:space-x-reverse">
                                     <svg className="flex-shrink-0 w-3.5 h-3.5 text-green-700 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">

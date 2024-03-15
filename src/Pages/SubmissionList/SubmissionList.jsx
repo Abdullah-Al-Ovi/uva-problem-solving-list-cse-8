@@ -53,7 +53,7 @@ const SubmissionList = () => {
         e.preventDefault()
         const userName = e.target?.userName?.value
         try {
-            const response = await axios.get(`https://uhunt.onlinejudge.org//api/uname2uid/${userName}`);
+            const response = await axios.get(`https://uhunt.onlinejudge.org/api/uname2uid/${userName}`);
             // console.log(response.data);
             setFetchedUserID(response?.data)
             if (!response.data) {
@@ -119,24 +119,24 @@ const SubmissionList = () => {
         <div className="">
 
             <form onSubmit={handleGetSubmissionList} className="pt-11">
-                <div className="flex justify-center gap-11">
-                    <div>
-                        <label htmlFor="userId" >User Id</label>
-                        <input required type="text" id="userId" name='userId' placeholder="Your user id" className="input input-bordered input-primary w-full max-w-xs  mt-2" />
+                <div className="flex flex-col justify-center gap-11 md:flex-row">
+                    <div className="">
+                        <label className="ml-3 md:ml-0" htmlFor="userId" >User Id</label>
+                        <input required type="text" id="userId" name='userId' placeholder="Your user id" className="input input-bordered input-primary w-full ml-3 md:ml-0 max-w-xs  mt-2" />
 
 
-                        <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip" data-tip="Click to get your user id">
-                            <i className="fa-solid fa-circle-info relative left-64 -top-9"></i>
+                        <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip relative -left-6 md:left-64 md:-top-9" data-tip="Click to get your user id">
+                            <i className="fa-solid fa-circle-info "></i>
                         </div>
 
                     </div>
-                    <div>
-                        <label htmlFor="count" className="">Submission Count</label>
+                    <div >
+                        <label htmlFor="count" className="ml-3 md:ml-0">Count</label>
                         <input type="text" id="count"
-                            name="count" placeholder="Submission count" className="input input-bordered input-primary w-full max-w-xs  mt-2" />
+                            name="count" placeholder="Submission count" className="input input-bordered input-primary w-full max-w-xs ml-5 md:ml-0 mt-2" />
 
-                        <div className="tooltip" data-tip="The amount of submission you want to check">
-                            <i className="fa-solid fa-circle-info relative -left-5"></i>
+                        <div className="tooltip relative -left-6 md:left-60 md:-top-9" data-tip="The amount of submission you want to check">
+                            <i className="fa-solid fa-circle-info "></i>
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,8 @@ const SubmissionList = () => {
                             <button onClick={()=>setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
                         </div>
                     }
-                    <table className="w-full ">
+                    <div className="overflow-x-scroll">
+                    <table className="w-full">
                         <thead className="bg-gray-300 text-black">
                             <tr >
                                 <th className="border-2 p-2">Submission ID</th>
@@ -181,6 +182,7 @@ const SubmissionList = () => {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             }
 
@@ -194,7 +196,8 @@ const SubmissionList = () => {
                                 <label htmlFor="userName" className="text-xl">User name</label>
                                 <input required type="text" name="userName" id="userName" placeholder="Your user name" className="input input-bordered input-primary w-[70%]  mt-2" />
                             </div>
-                            <button onClick={handleCloseModal} className="btn relative text-red-400 hover:text-red-600 bottom-[81%] left-[93%]">X</button>
+                            <button onClick={handleCloseModal} className="btn relative text-red-400 hover:text-red-600 left-[93%]
+                            -top-[77%] md:bottom-[81%] md:left-[93%]">X</button>
 
 
                             <input type="submit" className="my-3 mx-auto text-center btn w-[40%] ml-20" value="Submit" />

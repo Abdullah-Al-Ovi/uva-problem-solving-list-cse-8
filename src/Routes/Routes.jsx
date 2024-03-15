@@ -3,6 +3,7 @@ import Root from "../Root/Root";
 import Home from "../Pages/Home/Home";
 import UserNameToUserID from "../Pages/UserNameToUserID/UserNameToUserID";
 import SubmissionList from "../Pages/SubmissionList/SubmissionList";
+import RankPage from "../Pages/Rank/Rank";
 
 const Routes = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const Routes = createBrowserRouter([
             {
                 path:'/submission-list',
                 element:<SubmissionList></SubmissionList>
+            },
+            {
+                path:'/rank',
+                element:<RankPage></RankPage>
             }
         ]
     }

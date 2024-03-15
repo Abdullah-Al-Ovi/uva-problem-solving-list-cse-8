@@ -173,12 +173,12 @@ const SubmissionList = () => {
                             <tbody>
                                 {fetchedSubmissionList?.map((submission, index) => (
                                     <tr className="border-b text-center" key={index}>
-                                        <td className="p-2">{submission[0]}</td>
-                                        <td className="p-2">{submission[1]}</td>
-                                        <td className="p-2">{submission[2]}</td>
-                                        <td className="p-2">{submission[3]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{submission[0]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{submission[1]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{submission[2]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{submission[3]}</td>
                                         <td>{formatDate(submission[4])}</td>
-                                        <td>{languageNames[submission[5]]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{languageNames[submission[5]]}</td>
                                         <td className="p-2">{submission[6]}</td>
                                     </tr>
                                 ))}
@@ -189,7 +189,6 @@ const SubmissionList = () => {
             }
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-
 
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box ">

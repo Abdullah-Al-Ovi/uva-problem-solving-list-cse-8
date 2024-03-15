@@ -41,6 +41,21 @@ const SubmissionList = () => {
         33: "Other"
     };
 
+    const verdicts = {
+        10: "Submission error",
+        15: "Can't be judged",
+        20: "In queue",
+        30: "Compile error",
+        35: "Restricted function",
+        40: "Runtime error",
+        45: "Output limit",
+        50: "Time limit",
+        60: "Memory limit",
+        70: "Wrong answer",
+        80: "PresentationE",
+        90: "Accepted",
+      };
+
     const formatDate = (timestamp) => {
         const date = new Date(timestamp * 1000);
         const day = date.getDate().toString().padStart(2, '0');
@@ -151,7 +166,7 @@ const SubmissionList = () => {
             </div>
             {
                 fetchedSubmissionList?.length > 0 && <div className="my-7 w-full">
-                    <h3 className="text-3xl font-medium my-5 text-center">Submission List</h3>
+                    <h3 className="text-3xl font-medium my-5 text-center">Your Submission List</h3>
                     {
                         fetchedSubmissionList?.length > 0 && <div className="text-center mb-3">
                             <button onClick={() => setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
@@ -163,10 +178,10 @@ const SubmissionList = () => {
                                 <tr >
                                     <th className="border-2 p-2">Submission ID</th>
                                     <th className="border-2 p-2">Problem ID</th>
-                                    <th className="border-2 p-2">Verdict ID</th>
+                                    <th className="border-2 p-2">Verdict</th>
                                     <th className="border-2 p-2">Runtime(ms)</th>
-                                    <th className="border-2 p-2">Submission Time</th>
-                                    <th className="border-2 p-2">Language ID</th>
+                                    <th className="border-2 p-2">Submission Date</th>
+                                    <th className="border-2 p-2">Language</th>
                                     <th className="border-2 p-2">Submission Rank</th>
                                 </tr>
                             </thead>
@@ -175,7 +190,7 @@ const SubmissionList = () => {
                                     <tr className="border-b text-center" key={index}>
                                         <td className="border border-gray-400 px-4 py-2">{submission[0]}</td>
                                         <td className="border border-gray-400 px-4 py-2">{submission[1]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{submission[2]}</td>
+                                        <td className="border border-gray-400 px-4 py-2">{verdicts[submission[2]]}</td>
                                         <td className="border border-gray-400 px-4 py-2">{submission[3]}</td>
                                         <td className="border border-gray-400 px-4 py-2">{formatDate(submission[4])}</td>
                                         <td className="border border-gray-400 px-4 py-2">{languageNames[submission[5]]}</td>

@@ -46,7 +46,7 @@ const Banner = () => {
                             </Link>
                             
                         </div>
-                        <div className="mt-16 flex flex-col md:flex-col gap-5 w-full">
+                        <div className="mt-16 flex flex-col md:flex- gap-5 w-full">
                             <p className={`text-sm text-gray-500`}>
                                 © Copyright 2024. All rights reserved.
                             </p>

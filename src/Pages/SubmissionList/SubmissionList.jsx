@@ -120,28 +120,30 @@ const SubmissionList = () => {
 
             <form onSubmit={handleGetSubmissionList} className="pt-11">
                 <div className="flex flex-col justify-center gap-11 md:flex-row">
-                    <div className="">
-                        <label className="ml-3 md:ml-0" htmlFor="userId" >User Id</label>
-                        <input required type="text" id="userId" name='userId' placeholder="Your user id" className="input input-bordered input-primary w-full ml-3 md:ml-0 max-w-xs  mt-2" />
-
-
-                        <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip relative -left-6 md:left-64 md:-top-9" data-tip="Click to get your user id">
-                            <i className="fa-solid fa-circle-info "></i>
+                    <div>
+                        <div>
+                            <label className="md:ml-0" htmlFor="userId" >User Id</label>
+                            <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip ml-2" data-tip="Click to get your user id">
+                                <i className="fa-solid  fa-circle-info "></i>
+                            </div>
                         </div>
-
+                        <input required type="text" id="userId" name='userId' placeholder="Your user id" className="input input-bordered input-primary      mt-2 w-full" />
                     </div>
                     <div >
-                        <label htmlFor="count" className="ml-3 md:ml-0">Count</label>
-                        <input type="text" id="count"
-                            name="count" placeholder="Submission count" className="input input-bordered input-primary w-full max-w-xs ml-5 md:ml-0 mt-2" />
-
-                        <div className="tooltip relative -left-6 md:left-60 md:-top-9" data-tip="The amount of submission you want to check">
-                            <i className="fa-solid fa-circle-info "></i>
+                        <div>
+                            <label htmlFor="count" className=" md:ml-0">Count</label>
+                            <div className="tooltip ml-2" data-tip="The amount of submission you want to check">
+                                <i className="fa-solid fa-circle-info"></i>
+                            </div>
                         </div>
+                        <input type="text" id="count"
+                            name="count" placeholder="Submission count" className="input input-bordered input-primary md:ml-0 mt-2 w-full" />
+
+
                     </div>
                 </div>
                 <div className="w-full text-center">
-                    <input type="submit" className="my-3 mx-auto text-center btn w-[30%] border-2 ml-20" value="Search" />
+                    <input type="submit" className="my-3 mx-auto text-center btn w-[30%] border-2 " value="Search" />
                 </div>
             </form>
             <div className="text-red-500 text-center">
@@ -152,62 +154,67 @@ const SubmissionList = () => {
                     <h3 className="text-3xl font-medium my-5 text-center">Submission List</h3>
                     {
                         fetchedSubmissionList?.length > 0 && <div className="text-center mb-3">
-                            <button onClick={()=>setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
+                            <button onClick={() => setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
                         </div>
                     }
                     <div className="overflow-x-scroll">
-                    <table className="w-full">
-                        <thead className="bg-gray-300 text-black">
-                            <tr >
-                                <th className="border-2 p-2">Submission ID</th>
-                                <th className="border-2 p-2">Problem ID</th>
-                                <th className="border-2 p-2">Verdict ID</th>
-                                <th className="border-2 p-2">Runtime(ms)</th>
-                                <th className="border-2 p-2">Submission Time</th>
-                                <th className="border-2 p-2">Language ID</th>
-                                <th className="border-2 p-2">Submission Rank</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {fetchedSubmissionList?.map((submission, index) => (
-                                <tr className="border-b text-center" key={index}>
-                                    <td className="p-2">{submission[0]}</td>
-                                    <td className="p-2">{submission[1]}</td>
-                                    <td className="p-2">{submission[2]}</td>
-                                    <td className="p-2">{submission[3]}</td>
-                                    <td>{formatDate(submission[4])}</td>
-                                    <td>{languageNames[submission[5]]}</td>
-                                    <td className="p-2">{submission[6]}</td>
+                        <table className="w-full">
+                            <thead className="bg-gray-300 text-black">
+                                <tr >
+                                    <th className="border-2 p-2">Submission ID</th>
+                                    <th className="border-2 p-2">Problem ID</th>
+                                    <th className="border-2 p-2">Verdict ID</th>
+                                    <th className="border-2 p-2">Runtime(ms)</th>
+                                    <th className="border-2 p-2">Submission Time</th>
+                                    <th className="border-2 p-2">Language ID</th>
+                                    <th className="border-2 p-2">Submission Rank</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {fetchedSubmissionList?.map((submission, index) => (
+                                    <tr className="border-b text-center" key={index}>
+                                        <td className="p-2">{submission[0]}</td>
+                                        <td className="p-2">{submission[1]}</td>
+                                        <td className="p-2">{submission[2]}</td>
+                                        <td className="p-2">{submission[3]}</td>
+                                        <td>{formatDate(submission[4])}</td>
+                                        <td>{languageNames[submission[5]]}</td>
+                                        <td className="p-2">{submission[6]}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             }
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
+
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
+                <div className="modal-box ">
+                <div className="flex justify-between items-center">
+                    <span className="font-semibold">Enter Your UserName and go</span>
+                        <button onClick={handleCloseModal} className="btn text-red-500">X</button>
+                    </div>
                     <div className="modal-action">
-                        <form onSubmit={handleUserNameToUserId} className=" w-full" method="dialog ">
-                            <div className="flex flex-col pl-20 ">
-                                <label htmlFor="userName" className="text-xl">User name</label>
-                                <input required type="text" name="userName" id="userName" placeholder="Your user name" className="input input-bordered input-primary w-[70%]  mt-2" />
+                        
+                        <form onSubmit={handleUserNameToUserId} className="mx-auto w-full flex justify-center items-center" method="dialog ">
+                            <div className="flex flex-col ">
+
+                                <input required type="text" name="userName" id="userName" placeholder="Your user name" className="input input-bordered input-primary w-[90%] " />
                             </div>
-                            <button onClick={handleCloseModal} className="btn relative text-red-400 hover:text-red-600 left-[93%]
-                            -top-[77%] md:bottom-[81%] md:left-[93%]">X</button>
-
-
-                            <input type="submit" className="my-3 mx-auto text-center btn w-[40%] ml-20" value="Submit" />
+                            <input type="submit" className=" btn" value="Go" />
+                            
                         </form>
                     </div>
                     {
-                        fetchedUserId ? <p className="font-semibold text-blue-700">Your user id is: {fetchedUserId} </p> : ''
+                        fetchedUserId ? <p className="font-semibold text-blue-700 text-center my-5">Your user id is: {fetchedUserId} </p> : ''
                     }
+
                 </div>
             </dialog>
+
         </div>
     );
 };

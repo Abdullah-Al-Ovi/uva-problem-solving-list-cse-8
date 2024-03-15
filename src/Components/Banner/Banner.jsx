@@ -9,11 +9,11 @@ const Banner = () => {
                         <h1
                             className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
                         >
-                            Why here in
+                            BU CSE-8
 
-                            <span className="sm:block"> this website?</span>
+                            <span className="sm:block"> UVA contest and submission list</span>
                         </h1>
-                        <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed text-gray-300">
+                        <p className="mx-auto mt-4 max-w-xl md:text-xl text-gray-300">
 
                             <ul className="space-y-4 text-left">
                                 <li className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -35,7 +35,7 @@ const Banner = () => {
                                     <svg className="flex-shrink-0 w-3.5 h-3.5 text-green-700 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                                     </svg>
-                                    <span>Contest ranking of BSUCSE-8</span>
+                                    <span>You can check the contest ranking of BSUCSE-8</span>
                                 </li>
                             </ul>
                         </p>
@@ -51,7 +51,7 @@ const Banner = () => {
                             </Link>
                             
                         </div>
-                        <div className="mt-16 flex flex-col md:flex- gap-5 w-full">
+                        <div className="mt-16 flex flex-col md:flex-row gap-5 w-full">
                             <p className={`text-sm text-gray-500`}>
                                 © Copyright 2024. All rights reserved.
                             </p>

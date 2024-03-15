@@ -123,7 +123,7 @@ const SubmissionList = () => {
                     <div>
                         <div>
                             <label className="md:ml-0" htmlFor="userId" >User Id</label>
-                            <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip ml-2" data-tip="Click to get your user id">
+                            <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip tooltip-right ml-2" data-tip="Click to get your user id">
                                 <i className="fa-solid  fa-circle-info "></i>
                             </div>
                         </div>
@@ -132,7 +132,7 @@ const SubmissionList = () => {
                     <div >
                         <div>
                             <label htmlFor="count" className=" md:ml-0">Count</label>
-                            <div className="tooltip ml-2" data-tip="The amount of submission you want to check">
+                            <div  className="tooltip tooltip-right ml-2" data-tip="The amount of submission you want to check">
                                 <i className="fa-solid fa-circle-info"></i>
                             </div>
                         </div>
@@ -194,7 +194,7 @@ const SubmissionList = () => {
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box ">
                 <div className="flex justify-between items-center">
-                    <span className="font-semibold">Enter Your UserName and go</span>
+                    <span className="font-semibold">Enter Your UserName and go....</span>
                         <button onClick={handleCloseModal} className="btn text-red-500">X</button>
                     </div>
                     <div className="modal-action">

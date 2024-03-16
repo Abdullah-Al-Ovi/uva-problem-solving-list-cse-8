@@ -1,12 +1,28 @@
 
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Banner from "../Components/Banner/Banner";
+import Loading from "./Loading";
+
 
 const Root = () => {
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000); 
+  
+      return () => clearTimeout(timer);
+    }, []);
     return (
         <div>
-            
-           <Outlet></Outlet>
+            {
+        loading ? <Loading loading={loading} />
+        :
+        <Outlet></Outlet>
+      
+      }
+           
         </div>
     );
 };

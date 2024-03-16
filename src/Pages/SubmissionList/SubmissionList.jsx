@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 
 const SubmissionList = () => {
     const [fetchedUserId, setFetchedUserID] = useState('')
+    const [userIdLoading, setUserIdLoading] = useState(false)
+    const [submissionListLoading, setSubmissionListLoading] = useState(false)
     const [fetchedSubmissionList, setFetchedSubmissionList] = useState([])
     const languageNames = {
         1: "ANSI C",
@@ -54,7 +56,7 @@ const SubmissionList = () => {
         70: "Wrong answer",
         80: "PresentationE",
         90: "Accepted",
-      };
+    };
 
     const formatDate = (timestamp) => {
         const date = new Date(timestamp * 1000);
@@ -65,6 +67,7 @@ const SubmissionList = () => {
     }
 
     const handleUserNameToUserId = async (e) => {
+        setUserIdLoading(true)
         e.preventDefault()
         const userName = e.target?.userName?.value
         try {
@@ -72,13 +75,16 @@ const SubmissionList = () => {
             // console.log(response.data);
             setFetchedUserID(response?.data)
             if (!response.data) {
+                setUserIdLoading(false)
                 document.getElementById('my_modal_5').close();
                 e.target.reset()
                 return toast.error('No user id is found')
             }
+            setUserIdLoading(false)
             e.target.reset()
         } catch (error) {
             // console.log(error);
+            setUserIdLoading(false)
             e.target.reset()
             document.getElementById('my_modal_5').close();
             toast.error(error.message)
@@ -86,6 +92,7 @@ const SubmissionList = () => {
     }
 
     const handleGetSubmissionList = async (e) => {
+        setSubmissionListLoading(true)
         e.preventDefault()
         const userId = e.target?.userId?.value
         const count = e.target?.count?.value
@@ -100,10 +107,13 @@ const SubmissionList = () => {
 
                 if (response.data?.subs.length === 0) {
                     e.target.reset()
+                    setSubmissionListLoading(false)
                     return toast.error('No data is found')
                 }
+                setSubmissionListLoading(false)
                 e.target.reset()
             } catch (error) {
+                setSubmissionListLoading(false)
                 e.target.reset()
                 toast.error(error.message)
             }
@@ -147,7 +157,7 @@ const SubmissionList = () => {
                     <div >
                         <div>
                             <label htmlFor="count" className=" md:ml-0">Count</label>
-                            <div  className="tooltip tooltip-right ml-2" data-tip="The amount of submission you want to check">
+                            <div className="tooltip tooltip-right ml-2" data-tip="The amount of submission you want to check">
                                 <i className="fa-solid fa-circle-info"></i>
                             </div>
                         </div>
@@ -165,65 +175,72 @@ const SubmissionList = () => {
                 <span className="font-semibold">Note : </span><span>If no submission count value is provided, all of your submissions will be listed.</span>
             </div>
             {
-                fetchedSubmissionList?.length > 0 && <div className="my-7 w-full">
-                    <h3 className="text-3xl font-medium my-5 text-center">Your Submission List</h3>
-                    {
-                        fetchedSubmissionList?.length > 0 && <div className="text-center mb-3">
-                            <button onClick={() => setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
-                        </div>
-                    }
-                    <div className="overflow-x-scroll">
-                        <table className="w-full">
-                            <thead className="bg-gray-300 text-black">
-                                <tr >
-                                    <th className="border-2 p-2">Submission ID</th>
-                                    <th className="border-2 p-2">Problem ID</th>
-                                    <th className="border-2 p-2">Verdict</th>
-                                    <th className="border-2 p-2">Runtime(ms)</th>
-                                    <th className="border-2 p-2">Submission Date</th>
-                                    <th className="border-2 p-2">Language</th>
-                                    <th className="border-2 p-2">Submission Rank</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {fetchedSubmissionList?.map((submission, index) => (
-                                    <tr className="border-b text-center" key={index}>
-                                        <td className="border border-gray-400 px-4 py-2">{submission[0]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{submission[1]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{verdicts[submission[2]]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{submission[3]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{formatDate(submission[4])}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{languageNames[submission[5]]}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{submission[6]}</td>
+                fetchedSubmissionList?.length > 0 && !submissionListLoading ? (
+                    <div className="my-7 w-full">
+                        <h3 className="text-3xl font-medium my-5 text-center">Your Submission List</h3>
+                        {fetchedSubmissionList?.length > 0 && (
+                            <div className="text-center mb-3">
+                                <button onClick={() => setFetchedSubmissionList([])} className="btn text-red-500 text-center">Clear List</button>
+                            </div>
+                        )}
+                        <div className="overflow-x-scroll">
+                            <table className="w-full">
+                                <thead className="bg-gray-300 text-black">
+                                    <tr>
+                                        <th className="border-2 p-2">Submission ID</th>
+                                        <th className="border-2 p-2">Problem ID</th>
+                                        <th className="border-2 p-2">Verdict</th>
+                                        <th className="border-2 p-2">Runtime(ms)</th>
+                                        <th className="border-2 p-2">Submission Date</th>
+                                        <th className="border-2 p-2">Language</th>
+                                        <th className="border-2 p-2">Submission Rank</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {fetchedSubmissionList?.map((submission, index) => (
+                                        <tr className="border-b text-center" key={index}>
+                                            <td className="border border-gray-400 px-4 py-2">{submission[0]}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{submission[1]}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{verdicts[submission[2]]}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{submission[3]}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{formatDate(submission[4])}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{languageNames[submission[5]]}</td>
+                                            <td className="border border-gray-400 px-4 py-2">{submission[6]}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                ) : submissionListLoading &&  <div className="md:h-[50vh] flex items-center justify-center">
+                <span className="loading loading-spinner loading-lg "></span>
+            </div>
             }
+
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
 
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box ">
-                <div className="flex justify-between items-center">
-                    <span className="font-semibold">Enter Your UserName and go....</span>
+                    <div className="flex justify-between items-center">
+                        <span className="font-semibold">Enter Your UserName and go....</span>
                         <button onClick={handleCloseModal} className="btn text-red-500">X</button>
                     </div>
                     <div className="modal-action">
-                        
+
                         <form onSubmit={handleUserNameToUserId} className="mx-auto w-full flex justify-center items-center" method="dialog ">
                             <div className="flex flex-col ">
 
                                 <input required type="text" name="userName" id="userName" placeholder="Your user name" className="input input-bordered input-primary w-[90%] " />
                             </div>
                             <input type="submit" className=" btn" value="Go" />
-                            
+
                         </form>
                     </div>
                     {
-                        fetchedUserId ? <p className="font-semibold text-blue-700 text-center my-5">Your user id is: {fetchedUserId} </p> : ''
+                        fetchedUserId && !userIdLoading ? (<p className="font-semibold text-blue-700 text-center my-5">Your user id is: {fetchedUserId} </p>) : userIdLoading && <div className=" flex items-center justify-center">
+                        <span className="loading loading-spinner loading-lg "></span>
+                    </div>
                     }
 
                 </div>

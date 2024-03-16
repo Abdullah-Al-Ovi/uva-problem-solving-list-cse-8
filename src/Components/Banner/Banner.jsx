@@ -15,7 +15,7 @@ const Banner = () => {
                             className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
                         >
                             BU CSE-8
-
+                                                        
                             <span className="sm:block">{TitlePart}</span>
                             <Cursor/>
                         </h1>
@@ -27,8 +27,6 @@ const Banner = () => {
                                     </svg>
                                     <span>You can convert your UVA user name to UVA user id</span>
                                 </li>
-
-
 
                                 <li className="flex items-center space-x-3 rtl:space-x-reverse">
                                     <svg className="flex-shrink-0 w-3.5 h-3.5 text-green-700 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">

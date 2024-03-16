@@ -120,16 +120,19 @@ const SubmissionList = () => {
         }
         else {
             try {
-                const response = await axios.get(`https://uhunt.onlinejudge.org/api/subs-user-last/${userId}/${count}.`);
+                const response = await axios.get(`https://uhunt.onlinejudge.org/api/subs-user-last/${userId}/${count}`);
                 const subs = response?.data?.subs
                 const sortedSubs = subs.sort((a, b) => b[4] - a[4]);
                 setFetchedSubmissionList(sortedSubs)
                 if (response.data?.subs.length === 0) {
+                    setSubmissionListLoading(false)
                     e.target.reset()
                     return toast.error('No data is found')
                 }
+                setSubmissionListLoading(false)
                 e.target.reset()
             } catch (error) {
+                setSubmissionListLoading(false)
                 e.target.reset()
                 toast.error(error.message)
             }

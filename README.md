@@ -3,5 +3,5 @@
    - Any coder who solves a problem on UVA can view their submission statistics and related data in the submission-list route by providing their **User ID**. They can also view their latest submissions for a desired number by specifying the value of **Count**.
    - Any coder who solves a problem on UVA can retrieve their User ID from their username by clicking the **i** button next to the User ID label in the submission list route.
 ### If you want to execute this code:
-    - First of all, download/clone the code.
-    - Secondly, in the terminal of the project folder run command **npm i** and **npm run dev** respectively.
+   - First of all, download/clone the code.
+   - Secondly, in the terminal of the project folder run command **npm i** and **npm run dev** respectively.

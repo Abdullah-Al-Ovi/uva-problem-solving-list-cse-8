@@ -10,7 +10,7 @@ const Rank = ({ submissionCounts }) => {
         <div className="text-xs md:text-base">
             <div className="flex justify-center items-center">
                 <h2 className="text-lg md:text-2xl md:font-bold my-7 md:my-4 md:text-center text-left">CSE-8 Intra Batch Contest <sup className="text-base md:font-medium">Powered by Md. Erfan</sup></h2>
-                <div className="tooltip tooltip-left md:tooltip-bottom ml-2" data-tip="The ranking is determined based on the number of successful submissions. If two or more users have the same number of successful submissions, the rank is then determined by comparing their lower unsuccessful submission counts.">
+                <div className="tooltip tooltip-left md:tooltip-bottom ml-2" data-tip="The ranking is determined based on the number of successful submissions. If two or more users have the same number of successful submissions, the rank is then determined by comparing their lower unsuccessful submission counts.If one problem is Accepted once,it won't be counted in submission any type of count. ">
                     <i className="fa-solid fa-circle-info"></i>
                 </div>
             </div>

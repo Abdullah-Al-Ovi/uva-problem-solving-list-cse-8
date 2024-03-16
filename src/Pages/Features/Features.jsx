@@ -9,11 +9,13 @@ const Features = () => {
             url={'/submission-list'}
             title={'Submission List'}
             description={'Check your UVA submissions based on a specific problem number.'}
+            dataAos={'zoom-out-up'}
             ></Feature>
             <Feature 
             url={'/rank'}
             title={'CSE-8 Intra Batch Contest'}
             description={'Check the ranking and submission statistics of intra batch contest of BU CSE-8 '}
+            dataAos={'zoom-out-down'}
             ></Feature>
         </div>
     );

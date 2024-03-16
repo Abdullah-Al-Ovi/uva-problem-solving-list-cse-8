@@ -145,7 +145,7 @@ const SubmissionList = () => {
 
             <form onSubmit={handleGetSubmissionList} className="pt-11">
                 <div className="flex flex-col justify-center gap-11 md:flex-row">
-                    <div>
+                    <div data-aos='fade-right'>
                         <div>
                             <label className="md:ml-0" htmlFor="userId" >User Id</label>
                             <div onClick={() => document.getElementById('my_modal_5').showModal()} className="tooltip tooltip-right ml-2" data-tip="Click to get your user id">
@@ -154,7 +154,7 @@ const SubmissionList = () => {
                         </div>
                         <input required type="text" id="userId" name='userId' placeholder="Your user id" className="input input-bordered input-primary      mt-2 w-full" />
                     </div>
-                    <div >
+                    <div data-aos='fade-left'>
                         <div>
                             <label htmlFor="count" className=" md:ml-0">Count</label>
                             <div className="tooltip tooltip-right ml-2" data-tip="The amount of submission you want to check">
@@ -167,7 +167,8 @@ const SubmissionList = () => {
 
                     </div>
                 </div>
-                <div className="w-full text-center">
+                <div className="w-full text-center" data-aos="fade-up"
+    >
                     <input type="submit" className="my-3 mx-auto text-center btn w-[30%] border-2 " value="Search" />
                 </div>
             </form>

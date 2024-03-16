@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Feature = ({url,title,description}) => {
+const Feature = ({url,title,description,dataAos}) => {
     return (
-        <div className="max-w-sm p-5 space-y-3 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-md ">
+        <div className="max-w-sm p-5 space-y-3 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-700 shadow-md " data-aos={dataAos}>
 
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
 

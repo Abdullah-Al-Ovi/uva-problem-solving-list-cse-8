@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { Cursor, useTypewriter } from 'react-simple-typewriter'
 
 const Banner = () => {
+    const [TitlePart] = useTypewriter({
+        words:[' UVA Contest',' Submission List'],
+        loop:{},
+    })
     return (
         <div>
             <section className="bg-gray-900">
@@ -11,7 +16,8 @@ const Banner = () => {
                         >
                             BU CSE-8
 
-                            <span className="sm:block"> UVA contest and submission list</span>
+                            <span className="sm:block">{TitlePart}</span>
+                            <Cursor/>
                         </h1>
                         <p className="mx-auto mt-4 max-w-xl md:text-xl text-gray-300">
                             <ul className="space-y-4 text-left">

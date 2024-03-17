@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Rank = ({ submissionCounts }) => {
+const Rank = ({ submissionCounts,problemIds }) => {
     if (!submissionCounts || !Array.isArray(submissionCounts)) {
         console.error("submissionCounts is either undefined or not an array:", submissionCounts);
         return <div>Error: Unable to fetch submission counts</div>;
@@ -13,6 +13,10 @@ const Rank = ({ submissionCounts }) => {
                 <div className="tooltip tooltip-left md:tooltip-bottom ml-2" data-tip="The ranking is determined based on the number of successful submissions. If two or more users have the same number of successful submissions, the rank is then determined by comparing their lower unsuccessful submission counts.If one problem is Accepted once,it won't be counted in submission any type of count.">
                     <i className="fa-solid fa-circle-info"></i>
                 </div>
+            </div>
+            <div className="text-center mb-3 text-xl ">
+            <p>Total Problems Assigned: <span className="font-medium">{problemIds?.length} </span> </p>
+            <p>At least Problems must be solved: <span className="font-medium">22</span> </p>
             </div>
             <div className="overflow-x-scroll">
             <table className="border-collapse border border-gray-400 w-full">
@@ -97,55 +101,58 @@ const RankPage = () => {
     const minSubsId = 0; 
 
     const [submissionCounts, setSubmissionCounts] = useState([]);
+    const users = [
+        { userId: "1650008", roll: "21CSE001", name: "Sauda Tus Sahadia"},
+        { userId: "1336892", roll: "21CSE002", name: "Shantanu Mandal"},
+        { userId: "1278946", roll: "21CSE003", name: "Md Azom uddin"},
+        { userId: "1336829", roll: "21CSE004", name: "Md. Abu Syeed Abdullah"},
+        { userId: "1650051", roll: "21CSE005", name: "Maria Islam"},
+        { userId: "1344988", roll: "21CSE007", name: "Farjana Haque Khan"},
+        { userId: "1336711", roll: "21CSE008", name: "Md.Imran Sikder"},
+        { userId: "1336743", roll: "21CSE011", name: "Sabiha Akter Tanny"},
+        { userId: "1650147", roll: "21CSE012", name: "Tamanna Akter"},
+        { userId: "1649037", roll: "21CSE013", name: "Arghay Deb Paul"},
+        { userId: "1649944", roll: "21CSE014", name: "Sathi Akter"},
+        { userId: "1335320", roll: "21CSE015", name: "Mosa.Tahira Akteri Anee"},
+        { userId: "1650076", roll: "21CSE016", name: "Samira Meem Showry"},
+        { userId: "1336667", roll: "21CSE017", name: "Niloy Suter"},
+        { userId: "1336692", roll: "21CSE021", name: "Md. Israk Ahmmed"},
+        { userId: "1337405", roll: "21CSE022", name: "Tian Mahamud"},
+        { userId: "1650072", roll: "21CSE023", name: "Pronay Mondal"},
+        { userId: "1615559", roll: "21CSE024", name: "Asmahul Husna"},
+        { userId: "1345125", roll: "21CSE025", name: "Md Mainur Rahman"},
+        { userId: "1649793", roll: "21CSE026", name: "Md. Sadekur Rahman Sahad"},
+        { userId: "1335098", roll: "21CSE027", name: "MD.Emon"},
+        { userId: "1345277", roll: "21CSE028", name: "Md.Emon Howlader"},
+        { userId: "134509", roll: "21CSE029", name: "Md. Ataur Rahman Osman Goni"},
+        { userId: "1339110", roll: "21CSE030", name: "Md.Wahidujjaman"},
+        { userId: "1334930", roll: "21CSE031", name: "MD.Rony hosen khan"},
+        { userId: "823860", roll: "21CSE032", name: "Syfur Rahman"},
+        { userId: "1345260", roll: "21CSE034", name: "Md.Miraz Mahmud"},
+        { userId: "1650178", roll: "21CSE035", name: "Md. Abdul Karim"},
+        { userId: "1337718", roll: "21CSE039", name: "Md Reratul Azime"},
+        { userId: "1335296", roll: "21CSE040", name: "Md Faysal Ahamed"},
+        { userId: "1281311", roll: "21CSE041", name: "Md Ahad"},
+        { userId: "1294490", roll: "21CSE042", name: "Md. Aminul Islam"},
+        { userId: "1345154", roll: "21CSE043", name: "Md.Rayhan uddin"},
+        { userId: "1649956", roll: "21CSE044", name: "MD.Mosaraf hossen"},
+        { userId: "1650132", roll: "21CSE045", name: "Jannatul Ferdous  Mim"},
+        { userId: "1649957", roll: "21CSE046", name: "Ramisa Noushin Sohely"},
+        { userId: "1649895", roll: "21CSE047", name: "Nazifa Tabassum Chowdhury"},
+        { userId: "1336678", roll: "21CSE048", name: "Md.Abu Hossain Mohalder"},
+        { userId: "1336716", roll: "21CSE049", name: "Md. Shariful Islam"},
+        { userId: "1345015", roll: "21CSE050", name: "Rafiul Goni Rayhan"},
+        { userId: "1650100", roll: "21CSE051", name: "Sadia Amrin Laaj"},
+        { userId: "1334976", roll: "21CSE052", name: "Sadman Sadid"},
+        { userId: "1336811", roll: "21CSE053", name: "Anika Islam Zarin "},
+        { userId: "1290974", roll: "20CSE002", name: "S M Samirizzaman" },
+        { userId: "1290886", roll: "20CSE044", name: "Abdullah Al Ovi" }
+         ];
+
+    const problemIds = ["996","1012","1268","1724","2091","2113","2126","2160","2307","2827","310","3671","3648","1346","1281","472","47","1041","1010","1576","1007","3593","2507","56","100","467","4522","689","1071","2062","654"]
 
     useEffect(() => {
-        const users = [
-            { userId: "1650008", roll: "21CSE001", name: "Sauda Tus Sahadia"},
-            { userId: "1336892", roll: "21CSE002", name: "Shantanu Mandal"},
-            { userId: "1278946", roll: "21CSE003", name: "Md Azom uddin"},
-            { userId: "1336829", roll: "21CSE004", name: "Md. Abu Syeed Abdullah"},
-            { userId: "1650051", roll: "21CSE005", name: "Maria Islam"},
-            { userId: "1344988", roll: "21CSE007", name: "Farjana Haque Khan"},
-            { userId: "1336711", roll: "21CSE008", name: "Md.Imran Sikder"},
-            { userId: "1336743", roll: "21CSE011", name: "Sabiha Akter Tanny"},
-            { userId: "1650147", roll: "21CSE012", name: "Tamanna Akter"},
-            { userId: "1649037", roll: "21CSE013", name: "Arghay Deb Paul"},
-            { userId: "1335320", roll: "21CSE015", name: "Mosa.Tahira Akteri Anee"},
-            { userId: "1650076", roll: "21CSE016", name: "Samira Meem Showry"},
-            { userId: "1336692", roll: "21CSE021", name: "Md. Israk Ahmmed"},
-            { userId: "1337405", roll: "21CSE022", name: "Tian Mahamud"},
-            { userId: "1650072", roll: "21CSE023", name: "Pronay Mondal"},
-            { userId: "1615559", roll: "21CSE024", name: "Asmahul Husna"},
-            { userId: "1345125", roll: "21CSE025", name: "Md Mainur Rahman"},
-            { userId: "1649793", roll: "21CSE026", name: "Md. Sadekur Rahman Sahad"},
-            { userId: "1335098", roll: "21CSE027", name: "MD.Emon"},
-            { userId: "1345277", roll: "21CSE028", name: "Md.Emon Howlader"},
-            { userId: "134509", roll: "21CSE029", name: "Md. Ataur Rahman Osman Goni"},
-            { userId: "1339110", roll: "21CSE030", name: "Md.Wahidujjaman"},
-            { userId: "1334930", roll: "21CSE031", name: "MD.Rony hosen khan"},
-            { userId: "823860", roll: "21CSE032", name: "Syfur Rahman"},
-            { userId: "1345260", roll: "21CSE034", name: "Md.Miraz Mahmud"},
-            { userId: "1650178", roll: "21CSE035", name: "Md. Abdul Karim"},
-            { userId: "1337718", roll: "21CSE039", name: "Md Reratul Azime"},
-            { userId: "1335296", roll: "21CSE040", name: "Md Faysal Ahamed"},
-            { userId: "1281311", roll: "21CSE041", name: "Md Ahad"},
-            { userId: "1294490", roll: "21CSE042", name: "Md. Aminul Islam"},
-            { userId: "1345154", roll: "21CSE043", name: "Md.Rayhan uddin"},
-            { userId: "1649956", roll: "21CSE044", name: "MD.Mosaraf hossen"},
-            { userId: "1650132", roll: "21CSE045", name: "Jannatul Ferdous  Mim"},
-            { userId: "1649957", roll: "21CSE046", name: "Ramisa Noushin Sohely"},
-            { userId: "1649895", roll: "21CSE047", name: "Nazifa Tabassum Chowdhury"},
-            { userId: "1336678", roll: "21CSE048", name: "Md.Abu Hossain Mohalder"},
-            { userId: "1336716", roll: "21CSE049", name: "Md. Shariful Islam"},
-            { userId: "1345015", roll: "21CSE050", name: "Rafiul Goni Rayhan"},
-            { userId: "1650100", roll: "21CSE051", name: "Sadia Amrin Laaj"},
-            { userId: "1334976", roll: "21CSE052", name: "Sadman Sadid"},
-            { userId: "1336811", roll: "21CSE053", name: "Anika Islam Zarin "},
-            { userId: "1290974", roll: "20CSE002", name: "S M Samirizzaman" },
-            { userId: "1290886", roll: "20CSE044", name: "Abdullah Al Ovi" }
-             ];
-
-        const problemIds = ["996","1012","1268","1724","2091","2113","2126","2160","2307","2827","310","3671","3648","1346","1281"];
+        
         const fetchSubmissionCounts = async () => {
             try {
                 const counts = await calculateSubmissionCounts(users, problemIds, minSubsId);
@@ -160,7 +167,7 @@ const RankPage = () => {
 
     return (
         <div className="w-full">
-            <Rank submissionCounts={submissionCounts} />
+            <Rank problemIds={problemIds} submissionCounts={submissionCounts} />
         </div>
     );
 };

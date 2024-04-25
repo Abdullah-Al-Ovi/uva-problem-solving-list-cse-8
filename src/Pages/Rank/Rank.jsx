@@ -16,7 +16,7 @@ const Rank = ({ submissionCounts,problemIds }) => {
             </div>
             <div className="text-center mb-3 text-xl ">
             <p>Total Problems Assigned: <span className="font-medium">{problemIds?.length} </span> </p>
-            <p>At least Problems must be solved: <span className="font-medium">22</span> </p>
+            <p>At least Problems must be solved: <span className="font-medium">24</span> </p>
             </div>
             <div className="overflow-x-scroll">
             <table className="border-collapse border border-gray-400 w-full">
@@ -107,8 +107,10 @@ const RankPage = () => {
         { userId: "1278946", roll: "21CSE003", name: "Md Azom uddin"},
         { userId: "1336829", roll: "21CSE004", name: "Md. Abu Syeed Abdullah"},
         { userId: "1650051", roll: "21CSE005", name: "Maria Islam"},
-        { userId: "1344988", roll: "21CSE007", name: "Farjana Haque Khan"},
+        { userId: "1344988", roll: "21CSE006", name: "Farjana Haque Khan"},
+        { userId: "1334679", roll: "21CSE007", name: "Md. Tanvir Ahmmed"},
         { userId: "1336711", roll: "21CSE008", name: "Md.Imran Sikder"},
+        { userId: "1337440", roll: "21CSE010", name: "Md Khalid Hossen Muktadir"},
         { userId: "1336743", roll: "21CSE011", name: "Sabiha Akter Tanny"},
         { userId: "1650147", roll: "21CSE012", name: "Tamanna Akter"},
         { userId: "1649037", roll: "21CSE013", name: "Arghay Deb Paul"},
@@ -131,6 +133,7 @@ const RankPage = () => {
         { userId: "1348566", roll: "21CSE033", name: "Shahriad shomen utshab"},
         { userId: "1345260", roll: "21CSE034", name: "Md.Miraz Mahmud"},
         { userId: "1650178", roll: "21CSE035", name: "Md. Abdul Karim"},
+        { userId: "1337350", roll: "21CSE038", name: "Sayed Rakibul Alam"},
         { userId: "1337718", roll: "21CSE039", name: "Md Reratul Azime"},
         { userId: "1335296", roll: "21CSE040", name: "Md Faysal Ahamed"},
         { userId: "1281311", roll: "21CSE041", name: "Md Ahad"},
@@ -150,7 +153,7 @@ const RankPage = () => {
         { userId: "1290886", roll: "20CSE044", name: "Abdullah Al Ovi" }
          ];
 
-    const problemIds = ["996","1012","1268","1724","2091","2113","2126","2160","2307","2827","310","3671","3648","1346","1281","472","47","1041","1010","1576","1007","3593","2507","56","100","467","4522","689","1071","2062","654"]
+         const problemIds = ["996", "1012", "1268", "1724", "2091", "2113", "2126", "2160", "2307", "2827", "310", "3671", "3648", "1346", "1281", "472", "47", "1041", "1010", "1576", "1007", "3593", "2507", "56", "100", "467", "4522", "689", "1071", "2062", "654", "272", "703"];
 
     useEffect(() => {
         
